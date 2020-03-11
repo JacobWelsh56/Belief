@@ -27,18 +27,103 @@ this assignment.  For each question supply graphical evidence, numerical summari
 
 ### Do people who believe in Love at First sight also tend to believe in Life on other planets?
 
+$H_0$ : No relation between the belief of love at first sight and belief in extra life.  
+$H_A$ : There is a relation between love at first sight and extra life.
+
+Graphic Display
+
+```{r}
+barchartGC(~love_first + extra_life,data=mydata, xlab= 'love @ first sight')
+```
 
 
-  
+People who belive in love at first sight also tend to believe in extraterrestrial life.  
+
+Numerical Summary
+
+```{r}
+table1 <- xtabs(~love_first + extra_life, data=mydata)
+rowPerc(table1)
+colPerc(table1)
+```
     
+It looks like those who believe in extra life also believe in love at first sight.
+
+
+Inferential
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+We reject the null, because the p-value shows no relation between the two beliefs.
+
 # Your second Question  
 
 ### Is there a difference between boys and girls with respect to belief in life on other planets?
   
- 
+$H_0$ : There is no difference between genders on belief in extra life.  
+$H_A$ : There is a difference between the genders in belief on extra life.  
+  
+Graphical
+
+```{r}
+barchartGC(~sex + extra_life,data=mydata)
+```
+
+This barchart seems to show many more males believing in ET life.
+
+
+Numerical
+
+```{r}
+table1 <- xtabs(~sex + extra_life, data=mydata)
+rowPerc(table1)
+colPerc(table1)
+```
+
+In this table the yes columns have higher numbers then no columns for males, and has more no than yes for females.
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The p-value in this inference shows .2, meaning we fail to reject the null hypo. There is a difference in genders on belief of extra life.
  
 # Your last Question   
 
 ### Is there a difference between boys and girls with respect to belief in love at First sight?
 
+$H_0$ : There is no difference between genders on belief in love at first sight.
+$H_A$ : There is a difference between genders on belief in love at first sight.
+
+```{r}
+barchartGC(~sex + love_first,data=mydata)
+```
+
+There does not seem to be a difference with these bargrapghs. Both genders tend to have less belief in love at first sight.  
+
+Numerical  
+
+```{r}
+table1 <- xtabs(~sex + love_first, data=mydata)
+rowPerc(table1)
+colPerc(table1)
+```
+
+In these tables, it tends to be more people do not believe in love at first sight, but in the second set, slightly more females believe in love at first sight.  
+
+Inference  
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The p-value of 1 means that we fail to reject the null hypo, so there must be a diffence between genders on belief of love at first sight.  
 
